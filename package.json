@@ -2,16 +2,17 @@
   "name": "express-demo",
   "version": "1.0.0",
   "description": "This demonstrates implementing REST services with Express.",
-  "main": "index.js",
+  "author": "R. Mark Volkmann <r.mark.volkmann@gmail.com> (http://ociweb.com/mark)",
+  "license": "MIT",
   "scripts": {
+    "babel": "babel src -d build",
+    "clean": "rm -rf build",
     "flow": "flow",
     "format": "prettier-eslint --write src/**/*.js",
     "lint": "eslint --quiet src --ext .js",
-    "start": "nodemon src/index.js",
+    "start": "babel-watch --message 'restarting' --watch src src/index.js",
     "test": "jest"
   },
-  "author": "R. Mark Volkmann <r.mark.volkmann@gmail.com> (http://ociweb.com/mark)",
-  "license": "MIT",
   "dependencies": {
     "body-parser": "^1.18.2",
     "express": "^4.16.2",
@@ -20,6 +21,10 @@
     "serve-static": "^1.13.1"
   },
   "devDependencies": {
+    "babel-cli": "^6.26.0",
+    "babel-plugin-transform-flow-strip-types": "^6.22.0",
+    "babel-preset-env": "^1.6.1",
+    "babel-watch": "^2.0.7",
     "flow-bin": "^0.58.0",
     "jest": "^21.2.1"
   }
