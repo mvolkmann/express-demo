@@ -9,13 +9,15 @@
     "format": "prettier-eslint --write src/**/*.js",
     "lint": "eslint --quiet src --ext .js",
     "start": "babel-watch --message 'restarting' --watch src -- src/index.js",
-    "test": "jest"
+    "test": "jest",
+    "verify": "npm-run-all lint flow format test"
   },
   "dependencies": {
     "body-parser": "^1.18.2",
     "express": "^4.16.2",
     "morgan": "^1.9.0",
     "nodemon": "^1.12.1",
+    "npm-run-all": "^4.1.1",
     "serve-static": "^1.13.1"
   },
   "devDependencies": {

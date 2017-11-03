@@ -33,6 +33,12 @@ function getHandler(req: express$Request, res: express$Response) {
   }
 }
 
+function getRequestUrl(req: express$Request) {
+  const {hostname, path, protocol} = req;
+  const {port} = req.socket.address();
+  return `${protocol}://${hostname}:${port}${path}`;
+}
+
 function postHandler(req: express$Request, res: express$Response) {
   const newUser = req.body;
   const {username} = newUser;
@@ -41,8 +47,8 @@ function postHandler(req: express$Request, res: express$Response) {
     res.status(400).send(`user ${username} already exists`);
   } else {
     users[username] = newUser;
-    //TODO: Send header for URL of new resource.
-    res.send();
+    res.set('Location', getRequestUrl(req) + '/' + username);
+    res.status(201).send();
   }
 }
 
