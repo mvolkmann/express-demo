@@ -1,7 +1,10 @@
+// @flow
+
 const bodyParser = require('body-parser');
 const express = require('express');
 const morgan = require('morgan');
 const serveStatic = require('serve-static');
+const userService = require('./user-service');
 
 const app = express();
 
@@ -15,6 +18,8 @@ app.use(morgan('dev'));
 
 // Serve static files from the public directory.
 app.use(serveStatic('public'));
+
+userService(app);
 
 const PORT = 3001;
 app.listen(PORT, () => console.log('listening on', PORT));
