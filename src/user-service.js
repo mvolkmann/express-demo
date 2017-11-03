@@ -1,13 +1,14 @@
 // @flow
 
-type UserType = {
-  username: string,
-  password: string
-};
+import type {UserMapType} from './types';
 
-type UserMapType = {[username: string]: UserType};
+let users: UserMapType = {};
 
-const users: UserMapType = {};
+// This is used by tests.
+function deleteAllHandler(req: express$Request, res: express$Response) {
+  users = {};
+  res.send();
+}
 
 function deleteHandler(req: express$Request, res: express$Response) {
   const {username} = req.params;
@@ -66,6 +67,7 @@ function putHandler(req: express$Request, res: express$Response) {
 
 module.exports = (app: express$Application) => {
   const URL_PREFIX = '/user';
+  app.delete(URL_PREFIX, deleteAllHandler);
   app.delete(URL_PREFIX + '/:username', deleteHandler);
   app.get(URL_PREFIX, getAllHandler);
   app.get(URL_PREFIX + '/:username', getHandler);
