@@ -1,0 +1,24 @@
+{
+  "name": "express-demo",
+  "version": "1.0.0",
+  "description": "This demonstrates implementing REST services with Express.",
+  "main": "index.js",
+  "scripts": {
+    "format": "prettier-eslint --write src/**/*.js",
+    "lint": "eslint --quiet src --ext .js",
+    "start": "nodemon src/index.js",
+    "test": "jest"
+  },
+  "author": "R. Mark Volkmann <r.mark.volkmann@gmail.com> (http://ociweb.com/mark)",
+  "license": "MIT",
+  "dependencies": {
+    "body-parser": "^1.18.2",
+    "express": "^4.16.2",
+    "morgan": "^1.9.0",
+    "nodemon": "^1.12.1",
+    "server-static": "^2.0.5"
+  },
+  "devDependencies": {
+    "jest": "^21.2.1"
+  }
+}
